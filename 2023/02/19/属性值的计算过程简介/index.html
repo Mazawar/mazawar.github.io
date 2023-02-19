@@ -19,26 +19,39 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"mazawar.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="一个属于自己的私人空间">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mazawarの博客">
-<meta property="og:url" content="https://mazawar.github.io/index.html">
+    <meta name="description" content="在HTML元素中是如何给CSS属性复制? 它是机怎么计算让所有属性都有值呢? 我们把HTML元素从无属性值到没一个属性都有值的计算过程叫CSS属性值计算过程  属性值计算过程简介 1.确定声明值：参考样式表中没有冲突的声明，作为CSS属性值  2.层叠冲突：对样式表有冲突的声明使用层叠规则，确定CSS属性值  3.使用继承：对仍然没有值的属性，若可以继承，则继承父元素的值  4.使用默认值：对仍然">
+<meta property="og:type" content="article">
+<meta property="og:title" content="属性值的计算过程简介">
+<meta property="og:url" content="https://mazawar.github.io/2023/02/19/%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E7%AE%80%E4%BB%8B/index.html">
 <meta property="og:site_name" content="Mazawarの博客">
-<meta property="og:description" content="一个属于自己的私人空间">
+<meta property="og:description" content="在HTML元素中是如何给CSS属性复制? 它是机怎么计算让所有属性都有值呢? 我们把HTML元素从无属性值到没一个属性都有值的计算过程叫CSS属性值计算过程  属性值计算过程简介 1.确定声明值：参考样式表中没有冲突的声明，作为CSS属性值  2.层叠冲突：对样式表有冲突的声明使用层叠规则，确定CSS属性值  3.使用继承：对仍然没有值的属性，若可以继承，则继承父元素的值  4.使用默认值：对仍然">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mazawar/pic/main/202302192242439.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mazawar/pic/main/202302192246997.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mazawar/pic/main/202302192247110.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mazawar/pic/main/202302192249707.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mazawar/pic/main/202302192259987.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mazawar/pic/main/202302192258704.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mazawar/pic/main/202302192301360.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mazawar/pic/main/202302192302331.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mazawar/pic/main/202302192302959.png">
+<meta property="article:published_time" content="2023-02-19T14:39:56.000Z">
+<meta property="article:modified_time" content="2023-02-19T15:04:52.558Z">
 <meta property="article:author" content="Mazawar">
-<meta property="article:tag" content="Mazawar MaZehua">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="HTML">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Mazawar/pic/main/202302192242439.png">
 
 
-<link rel="canonical" href="https://mazawar.github.io/">
+<link rel="canonical" href="https://mazawar.github.io/2023/02/19/%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E7%AE%80%E4%BB%8B/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://mazawar.github.io/2023/02/19/%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E7%AE%80%E4%BB%8B/","path":"2023/02/19/属性值的计算过程简介/","title":"属性值的计算过程简介"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Mazawarの博客</title>
+<title>属性值的计算过程简介 | Mazawarの博客</title>
   
 
 
@@ -71,7 +84,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Mazawarの博客</h1>
+      <p class="site-title">Mazawarの博客</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
@@ -98,7 +111,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -111,6 +124,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8HTML%E5%85%83%E7%B4%A0%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%BB%99CSS%E5%B1%9E%E6%80%A7%E5%A4%8D%E5%88%B6-%E5%AE%83%E6%98%AF%E6%9C%BA%E6%80%8E%E4%B9%88%E8%AE%A1%E7%AE%97%E8%AE%A9%E6%89%80%E6%9C%89%E5%B1%9E%E6%80%A7%E9%83%BD%E6%9C%89%E5%80%BC%E5%91%A2"><span class="nav-number">1.</span> <span class="nav-text">在HTML元素中是如何给CSS属性复制? 它是机怎么计算让所有属性都有值呢?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E5%80%BC%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">属性值计算过程简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%A1%AE%E5%AE%9A%E5%A3%B0%E6%98%8E%E5%80%BC%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.确定声明值：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%B1%82%E5%8F%A0%E5%86%B2%E7%AA%81%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.层叠冲突：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8%E7%BB%A7%E6%89%BF%EF%BC%9A"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.使用继承：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8%E9%BB%98%E8%AE%A4%E5%80%BC%EF%BC%9A"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.使用默认值：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -150,16 +164,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://mazawar.github.io/2023/02/19/%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E7%AE%80%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -173,13 +188,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mazawarの博客">
+      <meta itemprop="name" content="属性值的计算过程简介 | Mazawarの博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/02/19/%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">属性值的计算过程简介</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          属性值的计算过程简介
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -212,7 +227,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="在HTML元素中是如何给CSS属性复制-它是机怎么计算让所有属性都有值呢"><a href="#在HTML元素中是如何给CSS属性复制-它是机怎么计算让所有属性都有值呢" class="headerlink" title="在HTML元素中是如何给CSS属性复制? 它是机怎么计算让所有属性都有值呢?"></a><strong>在HTML元素中是如何给CSS属性复制? 它是机怎么计算让所有属性都有值呢?</strong></h1><p><img src="https://raw.githubusercontent.com/Mazawar/pic/main/202302192242439.png" alt="image-20230219224220381"></p>
+        <h1 id="在HTML元素中是如何给CSS属性复制-它是机怎么计算让所有属性都有值呢"><a href="#在HTML元素中是如何给CSS属性复制-它是机怎么计算让所有属性都有值呢" class="headerlink" title="在HTML元素中是如何给CSS属性复制? 它是机怎么计算让所有属性都有值呢?"></a><strong>在HTML元素中是如何给CSS属性复制? 它是机怎么计算让所有属性都有值呢?</strong></h1><p><img src="https://raw.githubusercontent.com/Mazawar/pic/main/202302192242439.png" alt="image-20230219224220381"></p>
 <p>我们把HTML元素从无属性值到没一个属性都有值的计算过程叫<strong>CSS属性值计算过程</strong></p>
 <p><img src="https://raw.githubusercontent.com/Mazawar/pic/main/202302192246997.png" alt="image-20230219224601965"></p>
 <h2 id="属性值计算过程简介"><a href="#属性值计算过程简介" class="headerlink" title="属性值计算过程简介"></a><strong>属性值计算过程简介</strong></h2><p><img src="https://raw.githubusercontent.com/Mazawar/pic/main/202302192247110.png" alt="image-20230219224745069"></p>
@@ -227,7 +242,6 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p><img src="https://raw.githubusercontent.com/Mazawar/pic/main/202302192302331.png" alt="image-20230219230242190"></p>
 <p><img src="https://raw.githubusercontent.com/Mazawar/pic/main/202302192302959.png" alt="image-20230219230253862"></p>
 
-      
     </div>
 
     
@@ -235,11 +249,17 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+          </div>
+
+        
+
     </footer>
   </article>
 </div>
+
 
 
 
