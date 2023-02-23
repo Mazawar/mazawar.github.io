@@ -86,7 +86,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">2</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a></li>
   </ul>
 </nav>
 
@@ -123,7 +123,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -151,6 +151,90 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://mazawar.github.io/2023/02/23/JS%E5%B0%81%E8%A3%85%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mazawar">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mazawarの博客">
+      <meta itemprop="description" content="一个属于自己的私人空间">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mazawarの博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/23/JS%E5%B0%81%E8%A3%85%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">JS封装工具</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-02-23 21:42:09 / 修改时间：21:44:35" itemprop="dateCreated datePublished" datetime="2023-02-23T21:42:09+08:00">2023-02-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="防抖函数"><a href="#防抖函数" class="headerlink" title="防抖函数"></a>防抖函数</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 防抖函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; fn 传入一个函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; delay 传入一个延迟时间(毫秒)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span> </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn,delay</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> timeId; <span class="comment">// 记录最后一个计时器的id</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> args = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>); <span class="comment">// 将伪数组转为数组</span></span><br><span class="line">        <span class="built_in">clearTimeout</span>(timeId);</span><br><span class="line">        timeId = <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">            fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, args) </span><br><span class="line">        &#125;,delay)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="动画过度"><a href="#动画过度" class="headerlink" title="动画过度"></a>动画过度</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 动画效果函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; options </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createAnimation</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="keyword">from</span> = options.<span class="property">from</span>; <span class="comment">// 起始值</span></span><br><span class="line">    <span class="keyword">var</span> to = options.<span class="property">to</span>; <span class="comment">// 结束值</span></span><br><span class="line">    <span class="keyword">var</span> totalMS = options.<span class="property">totalMS</span> || <span class="number">1000</span>; <span class="comment">// 变化总时间</span></span><br><span class="line">    <span class="keyword">var</span> duration = options.<span class="property">duration</span> || <span class="number">15</span>; <span class="comment">// 变化间隔时间</span></span><br><span class="line">    <span class="keyword">var</span> times = <span class="title class_">Math</span>.<span class="title function_">floor</span>(totalMS / duration); <span class="comment">// 变化的次数</span></span><br><span class="line">    <span class="keyword">var</span> dis = (to - <span class="keyword">from</span>) / times; <span class="comment">// 每一次变化的值</span></span><br><span class="line">    <span class="keyword">var</span> curTimes = <span class="number">0</span>; <span class="comment">// 当前变化的次数</span></span><br><span class="line">    <span class="keyword">var</span> timerId = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">from</span> += dis;</span><br><span class="line">        curTimes++; <span class="comment">// 当前变化增加一次</span></span><br><span class="line">        <span class="keyword">if</span>(curTimes &gt;= times)&#123;</span><br><span class="line">            <span class="comment">// 变化的次数达到了</span></span><br><span class="line">            <span class="keyword">from</span> = to <span class="comment">// 变化完成了</span></span><br><span class="line">            <span class="built_in">clearInterval</span>(timerId);</span><br><span class="line">            options.<span class="property">onend</span> &amp;&amp; options.<span class="title function_">onend</span>()</span><br><span class="line">        &#125;</span><br><span class="line">        options.<span class="property">onmove</span> &amp;&amp; options.<span class="title function_">onmove</span>(<span class="keyword">from</span>)</span><br><span class="line">    &#125;, duration);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 使用案例</span></span><br><span class="line"><span class="comment">createAnimation(&#123;</span></span><br><span class="line"><span class="comment">    from: 120,</span></span><br><span class="line"><span class="comment">    to: 0,</span></span><br><span class="line"><span class="comment">    totalMS: 500,</span></span><br><span class="line"><span class="comment">    duration: 10,</span></span><br><span class="line"><span class="comment">    onmove: function(n) &#123;</span></span><br><span class="line"><span class="comment">        //n为只一次变化的值</span></span><br><span class="line"><span class="comment">    &#125;,</span></span><br><span class="line"><span class="comment">    onend: function() &#123;</span></span><br><span class="line"><span class="comment">        //变化完成后运行该函数</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
