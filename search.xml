@@ -282,7 +282,6 @@
 </tr>
 </tbody></table>
 <h4 id="GMT和UTC"><a href="#GMT和UTC" class="headerlink" title="GMT和UTC"></a>GMT和UTC</h4><p>世界划分为24个时区，北京在东8区，格林威治在0时区。</p>
-<p><img src="https://gblobscdn.gitbook.com/assets%2F-LQcTxgqTqhC05ckLpLr%2F-LikgRi0I4q8Q0a3kFgz%2F-LikgSk-E-e8AcD50vHu%2F2019-07-02-11-14-46.png?alt=media" alt="时区"></p>
 <p><strong>GMT</strong>：Greenwish Mean Time 格林威治世界时。太阳时，精确到毫秒。</p>
 <p><strong>UTC</strong>：Universal Time Coodinated 世界协调时。以原子时间为计时标准，精确到纳秒。</p>
 <blockquote>
