@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mazawar.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="WebAPI和标准库不同，WebAPI 是浏览器提供的一套 API，用于操作浏览器窗口和界面 WebAPI 中包含两个部分：  BOM：Browser Object Model，浏览器模型，提供和浏览器相关的操作 DOM：Document Object Model，文档模型，提供和页面相关的操作  BOMBOM 提供了一系列的对象和函数，提供和浏览器本身相关的操作 window全局对象 https">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebAPI">
+<meta property="og:url" content="https://mazawar.github.io/2023/02/24/WebAPI/index.html">
+<meta property="og:site_name" content="Mazawarの博客">
+<meta property="og:description" content="WebAPI和标准库不同，WebAPI 是浏览器提供的一套 API，用于操作浏览器窗口和界面 WebAPI 中包含两个部分：  BOM：Browser Object Model，浏览器模型，提供和浏览器相关的操作 DOM：Document Object Model，文档模型，提供和页面相关的操作  BOMBOM 提供了一系列的对象和函数，提供和浏览器本身相关的操作 window全局对象 https">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-24T02:52:58.000Z">
+<meta property="article:modified_time" content="2023-02-24T02:53:34.100Z">
+<meta property="article:author" content="Mazawar">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://mazawar.github.io/2023/02/24/WebAPI/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://mazawar.github.io/2023/02/24/WebAPI/","path":"2023/02/24/WebAPI/","title":"WebAPI"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>WebAPI | Mazawarの博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mazawarの博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">4</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WebAPI"><span class="nav-number">1.</span> <span class="nav-text">WebAPI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BOM"><span class="nav-number">1.1.</span> <span class="nav-text">BOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#window"><span class="nav-number">1.1.1.</span> <span class="nav-text">window</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-location"><span class="nav-number">1.1.2.</span> <span class="nav-text">window.location</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-history"><span class="nav-number">1.1.3.</span> <span class="nav-text">window.history</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM"><span class="nav-number">1.2.</span> <span class="nav-text">DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96-dom"><span class="nav-number">1.2.1.</span> <span class="nav-text">获取 dom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-dom"><span class="nav-number">1.2.2.</span> <span class="nav-text">创建 dom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9-dom-%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.3.</span> <span class="nav-text">更改 dom 结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dom-%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.4.</span> <span class="nav-text">dom 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dom-%E5%86%85%E5%AE%B9"><span class="nav-number">1.2.5.</span> <span class="nav-text">dom 内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dom-%E6%A0%B7%E5%BC%8F"><span class="nav-number">1.2.6.</span> <span class="nav-text">dom 样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%91%E5%90%AC-dom-%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.2.7.</span> <span class="nav-text">监听 dom 事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">事件类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A1%A8%E5%8D%95%E7%B1%BB%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.2.7.1.1.</span> <span class="nav-text">表单类事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%BC%A0%E6%A0%87%E7%B1%BB%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.2.7.1.2.</span> <span class="nav-text">鼠标类事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.2.7.1.3.</span> <span class="nav-text">键盘事件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.2.7.2.</span> <span class="nav-text">注册事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.7.3.</span> <span class="nav-text">事件处理函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA"><span class="nav-number">1.2.7.4.</span> <span class="nav-text">事件默认行为</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mazawar</p>
+  <div class="site-description" itemprop="description">一个属于自己的私人空间</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mazawar.github.io/2023/02/24/WebAPI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mazawar">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mazawarの博客">
+      <meta itemprop="description" content="一个属于自己的私人空间">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="WebAPI | Mazawarの博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WebAPI
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-02-24 10:52:58 / 修改时间：10:53:34" itemprop="dateCreated datePublished" datetime="2023-02-24T10:52:58+08:00">2023-02-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="WebAPI"><a href="#WebAPI" class="headerlink" title="WebAPI"></a>WebAPI</h1><p>和标准库不同，WebAPI 是<strong>浏览器</strong>提供的一套 API，用于操作浏览器窗口和界面</p>
+<p>WebAPI 中包含两个部分：</p>
+<ul>
+<li>BOM：Browser Object Model，浏览器模型，提供和浏览器相关的操作</li>
+<li>DOM：Document Object Model，文档模型，提供和页面相关的操作</li>
+</ul>
+<h2 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h2><p>BOM 提供了一系列的对象和函数，提供和浏览器本身相关的操作</p>
+<h3 id="window"><a href="#window" class="headerlink" title="window"></a>window</h3><p>全局对象</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/window">https://developer.mozilla.org/zh-CN/docs/Web/API/Window/window</a></p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open"><code>open()</code></a></td>
+<td>打开一个新的浏览器窗口</td>
+<td>返回新窗口的 window 对象</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/close"><code>close()</code></a></td>
+<td>关闭浏览器窗口</td>
+<td>只能关闭使用 open 打开的浏览器窗口</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setTimeout">&#x3D;&#x3D;setTimeout()&#x3D;&#x3D;</a></td>
+<td>设置一个计时器<br />在一段时间后自动执行某个函数</td>
+<td>参数 1：函数，无参，this 指向 window<br />参数 2：时间，毫秒<br />返回：计时器的 ID</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/clearTimeout">&#x3D;&#x3D;clearTimeout()&#x3D;&#x3D;</a></td>
+<td>清除指定 ID 的计时器</td>
+<td>传入计时器的 ID</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setInterval">&#x3D;&#x3D;setInterval()&#x3D;&#x3D;</a></td>
+<td>设置一个计时器<br />每隔一段时间自动执行某个函数</td>
+<td>参数 1：函数，无参，this 指向 window<br />参数 2：时间，毫秒<br />返回：计时器的 ID</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/clearInterval">&#x3D;&#x3D;clearInterval()&#x3D;&#x3D;</a></td>
+<td>清除指定 ID 的计时器</td>
+<td>传入计时器的 ID</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/alert"><code>alert()</code></a></td>
+<td>弹出提示框</td>
+<td>不同的操作系统外观有差异</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/confirm"><code>confirm()</code></a></td>
+<td>弹出确认框</td>
+<td>不同的操作系统外观有差异</td>
+</tr>
+</tbody></table>
+<h3 id="window-location"><a href="#window-location" class="headerlink" title="window.location"></a>window.location</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location">https://developer.mozilla.org/zh-CN/docs/Web/API/Location</a></p>
+<p>提供地址栏的相关操作</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location/href">&#x3D;&#x3D;Location.href&#x3D;&#x3D;</a></td>
+<td>获取或设置页面当前地址</td>
+<td>设置地址回导致页面跳转</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Location/protocol"><code>Location.protocol</code></a></td>
+<td>获取或设置地址中的协议部分</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location/host"><code>Location.host</code></a></td>
+<td>获取或设置地址中的主机名和端口号</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location/hostname"><code>Location.hostname</code></a></td>
+<td>获取或设置地址中的主机名</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Location/port"><code>Location.port</code> </a></td>
+<td>获取或设置地址中的端口号</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname"><code>Location.pathname</code> </a></td>
+<td>获取或设置地址中的路径部分</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location/search"><code>Location.search</code></a></td>
+<td>获取或设置地址中的参数部分</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location/hash"><code>Location.hash</code></a></td>
+<td>获取或设置地址中的 hash 部分</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location/reload"><code>Location.reload()</code></a></td>
+<td>刷新页面</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="window-history"><a href="#window-history" class="headerlink" title="window.history"></a>window.history</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/History">https://developer.mozilla.org/zh-CN/docs/Web/API/History</a></p>
+<p>提供当前窗口历史记录的操作</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/History/back"><code>History.back()</code></a></td>
+<td>后退</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/History/forward"><code>History.forward()</code></a></td>
+<td>前进</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/History/go"><code>History.go()</code></a></td>
+<td>根据相对当前页面的偏移量，<br />进入指定的记录页</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/History/pushState"><code>History.pushState()</code></a></td>
+<td>在历史记录中添加一条记录</td>
+<td>页面不刷新</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/History/replaceState"><code>History.replaceState()</code></a></td>
+<td>替换当前记录</td>
+<td>页面不刷新</td>
+</tr>
+</tbody></table>
+<h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><p>DOM 是一个对象，它对应到 HTML 中的节点</p>
+<h3 id="获取-dom"><a href="#获取-dom" class="headerlink" title="获取 dom"></a>获取 dom</h3><table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>document.getElementById()</td>
+<td>根据元素 id 获取 dom</td>
+<td>得到单个 dom</td>
+</tr>
+<tr>
+<td>document.getElementsByTagName()<br />dom.getElementsByTagName()</td>
+<td>根据元素名称获取 dom</td>
+<td>得到 dom 的伪数组</td>
+</tr>
+<tr>
+<td>document.getElementsByClassName()<br />dom.getElementsByClassName()</td>
+<td>根据元素类样式获取 dom</td>
+<td>得到 dom 的伪数组</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;document.querySelector()&#x3D;&#x3D;<br />&#x3D;&#x3D;dom.querySelector()&#x3D;&#x3D;</td>
+<td>根据 CSS 选择器获取 dom</td>
+<td>得到第一个匹配的 dom</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;document.querySelectorAll()&#x3D;&#x3D;<br />&#x3D;&#x3D;dom.querySelectorAll()&#x3D;&#x3D;</td>
+<td>根据 CSS 选择器获取 dom</td>
+<td>得到所有匹配的 dom<br />伪数组</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;document.documentElement&#x3D;&#x3D;</td>
+<td>获取 html 元素</td>
+<td></td>
+</tr>
+<tr>
+<td>document.body</td>
+<td>获取 body</td>
+<td></td>
+</tr>
+<tr>
+<td>document.head</td>
+<td>获取 head</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;dom.children&#x3D;&#x3D;</td>
+<td>获取 dom 的子元素</td>
+<td>得到 dom 的伪数组</td>
+</tr>
+<tr>
+<td>dom.childNodes</td>
+<td>获取 dom 的子节点</td>
+<td>得到 dom 节点的伪数组<br />关于节点对象点<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node">这里</a></td>
+</tr>
+<tr>
+<td>dom.previousElementSibling</td>
+<td>得到 dom 前一个兄弟元素</td>
+<td></td>
+</tr>
+<tr>
+<td>dom.nextElementSibling</td>
+<td>得到 dom 后一个兄弟元素</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;dom.parentElement&#x3D;&#x3D;</td>
+<td>得到 dom 的父元素</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="创建-dom"><a href="#创建-dom" class="headerlink" title="创建 dom"></a>创建 dom</h3><table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;&#x3D;document.createElement()&#x3D;&#x3D;</td>
+<td>创建一个 dom 并返回</td>
+<td>传入元素名称</td>
+</tr>
+</tbody></table>
+<h3 id="更改-dom-结构"><a href="#更改-dom-结构" class="headerlink" title="更改 dom 结构"></a>更改 dom 结构</h3><p>这里是指更改文档树（DOM 树）</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;&#x3D;dom.remove()&#x3D;&#x3D;</td>
+<td>从文档树中删除 dom</td>
+<td>不是删除对象</td>
+</tr>
+<tr>
+<td>dom.removeChild()</td>
+<td>删除 dom 的某个子节点</td>
+<td>传入 dom 对象</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node/insertBefore"><code>dom.insertBefore()</code></a></td>
+<td>在 dom 的子节点中，添加一个新节点到另一个节点之前</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;dom.appendChild()&#x3D;&#x3D;</td>
+<td>添加一个新节点到 dom 的子节点末尾</td>
+<td>传入 dom 对象</td>
+</tr>
+</tbody></table>
+<h3 id="dom-属性"><a href="#dom-属性" class="headerlink" title="dom 属性"></a>dom 属性</h3><p>本节的「属性」，是指 HTML 元素的「属性」</p>
+<p>属性有两种：</p>
+<ul>
+<li>标准属性：HTML 元素本身拥有的属性，例如：<ul>
+<li>a 元素的 href、title</li>
+<li>input 的 value</li>
+<li>img 的 src</li>
+<li>……</li>
+</ul>
+</li>
+<li>自定义属性：HTML 元素标准中未定义的属性</li>
+</ul>
+<p><strong>所有标准属性均可通过 <code>dom.属性名</code> 得到，其中：</strong></p>
+<ul>
+<li><p>布尔属性会被自动转换为 boolean</p>
+</li>
+<li><p>路径类的属性会被转换为绝对路径</p>
+</li>
+<li><p>标准属性始终都是存在的，不管你是否有在元素中属性该属性</p>
+</li>
+<li><p>class 由于和关键字重名，因此需要使用 className</p>
+</li>
+</ul>
+<p><strong>所有的自定义属性均可通过下面的方式操作：</strong></p>
+<ul>
+<li><code>dom.setAttribute(name, value)</code>，设置属性键值对</li>
+<li><code>dom.getAttribute(name)</code>，获取属性值</li>
+</ul>
+<p>自定义属性和元素源码书写是对应的，可以尝试获取 a 元素的 href 属性对比标准属性，看看有什么不同。</p>
+<h3 id="dom-内容"><a href="#dom-内容" class="headerlink" title="dom 内容"></a>dom 内容</h3><table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;&#x3D;dom.innerText&#x3D;&#x3D;</td>
+<td>获取或设置元素文本内容</td>
+<td>设置时会自动进行 HTML 实体编码</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;dom.innerHTML&#x3D;&#x3D;</td>
+<td>获取或设置元素的 HTML 内容</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="dom-样式"><a href="#dom-样式" class="headerlink" title="dom 样式"></a>dom 样式</h3><p>在 JS 中，有两种样式：</p>
+<ul>
+<li>内联样式：元素的 style 属性中书写的样式</li>
+<li>计算样式（最终样式）：元素最终计算出来的样式</li>
+</ul>
+<p><strong>JS 可以获取内联样式和计算样式，但只能设置内联样式</strong></p>
+<p>下面罗列了样式的常见操作：</p>
+<ul>
+<li><code>dom.style</code>：获取元素的内联样式，得到样式对象<ul>
+<li>对象中的所有样式属性均可以被赋值，赋值后即可应用样式到元素的 style 中</li>
+</ul>
+</li>
+<li><code>getComputedStyle(dom)</code>：获取元素的计算样式，得到一个样式对象<ul>
+<li>该样式对象中的属性是只读的，无法被重新赋值</li>
+</ul>
+</li>
+</ul>
+<p>关于<strong>样式对象</strong>，注意：</p>
+<ul>
+<li>当给样式赋值为空字符串时，相当于删除内联样式</li>
+<li>当给样式的赋值不合法时，赋值语句无效，不会报错</li>
+<li>CSS 的短横线命名法，在属性名中表现为驼峰命名法</li>
+</ul>
+<h3 id="监听-dom-事件"><a href="#监听-dom-事件" class="headerlink" title="监听 dom 事件"></a>监听 dom 事件</h3><p>监听事件可以描述为一句话：</p>
+<p><strong>某个 DOM</strong>发生了<strong>某件事</strong>之后，我需要做<strong>某些处理</strong></p>
+<ul>
+<li>某个 DOM：监听谁？</li>
+<li>某件事（事件类型）：它发生了什么？</li>
+<li>某些处理（处理函数）：我要做什么？</li>
+</ul>
+<p>下面是一段事件监听代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为dom注册点击事件，当被点击时，自动运行事件处理函数</span></span><br><span class="line">dom.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;dom 被点击了&#x27;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h4><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Events">https://developer.mozilla.org/zh-CN/docs/Web/Events</a></p>
+<h5 id="表单类事件"><a href="#表单类事件" class="headerlink" title="表单类事件"></a>表单类事件</h5><table>
+<thead>
+<tr>
+<th>事件名称</th>
+<th>触发时机</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;&#x3D;submit&#x3D;&#x3D;</td>
+<td>表单被提交时触发</td>
+<td>注册到 form 元素上</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;input&#x3D;&#x3D;</td>
+<td>文本框改变后立即出发</td>
+<td>注册到 input、textarea 上</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;change&#x3D;&#x3D;</td>
+<td>文本框改变后、失去焦点时触发<br />下拉列表、多选框、单选框改变后立即触发</td>
+<td>注册到 input、select、textarea 上</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>表单被重置时触发</td>
+<td>注册到 form 元素上</td>
+</tr>
+<tr>
+<td>focus</td>
+<td>元素聚焦时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>blur</td>
+<td>元素失去焦点时触发</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="鼠标类事件"><a href="#鼠标类事件" class="headerlink" title="鼠标类事件"></a>鼠标类事件</h5><table>
+<thead>
+<tr>
+<th>事件名称</th>
+<th>触发时机</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;&#x3D;click&#x3D;&#x3D;</td>
+<td>鼠标按下抬起后触发</td>
+<td></td>
+</tr>
+<tr>
+<td>contextmenu</td>
+<td>右键菜单显示前触发</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;mousedown&#x3D;&#x3D;</td>
+<td>鼠标按下时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;mouseup&#x3D;&#x3D;</td>
+<td>鼠标抬起时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;mousemove&#x3D;&#x3D;</td>
+<td>鼠标在元素上移动时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;mouseenter&#x3D;&#x3D;</td>
+<td>鼠标进入元素时触发（不冒泡）</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;mouseleave&#x3D;&#x3D;</td>
+<td>鼠标离开元素时触发（不冒泡）</td>
+<td></td>
+</tr>
+<tr>
+<td>mouseover</td>
+<td>鼠标进入元素时触发（冒泡）</td>
+<td></td>
+</tr>
+<tr>
+<td>mouseout</td>
+<td>鼠标离开元素时触发（冒泡）</td>
+<td></td>
+</tr>
+<tr>
+<td>wheel</td>
+<td>鼠标滚轮滚动时触发</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h5><table>
+<thead>
+<tr>
+<th>事件名称</th>
+<th>触发时机</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>keydown</td>
+<td>某个键被按下时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>keyup</td>
+<td>某个键被抬起时触发</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="注册事件"><a href="#注册事件" class="headerlink" title="注册事件"></a>注册事件</h4><p>JS 提供了三种方式注册事件</p>
+<p>方式 1：将事件注册写到元素上，这种方式基本被弃用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;js代码&quot;</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;方式 2：使用 dom 属性注册事件&#x3D;&#x3D;</p>
+<p>属性名为<code>on+事件类型</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 监听事件</span></span><br><span class="line">dom.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 处理函数</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 移除监听事件</span></span><br><span class="line">dom.<span class="property">onclick</span> = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这种方式的特点是：</p>
+<ul>
+<li>优点：易于监听、覆盖、移除</li>
+<li>缺点：只能注册一个处理函数</li>
+<li>缺点：某些事件不支持用这种方式注册</li>
+</ul>
+<p>&#x3D;&#x3D;方式 3：使用 addEventListener 方法注册事件&#x3D;&#x3D;</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dom.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 处理函数1</span></span><br><span class="line">&#125;);</span><br><span class="line">dom.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 处理函数2</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这是最完美的事件注册方式，如果要移除用这种方式注册的事件，需要改写代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">handler1</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 处理函数1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handler2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 处理函数2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dom.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, handler1);</span><br><span class="line">dom.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, handler2);</span><br><span class="line"></span><br><span class="line">dom.<span class="title function_">removeEventListener</span>(<span class="string">&#x27;click&#x27;</span>, handler1); <span class="comment">// 移除监听函数1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="事件处理函数"><a href="#事件处理函数" class="headerlink" title="事件处理函数"></a>事件处理函数</h4><p>当事件发生时，会自动调用事件处理函数，并向函数传递一个参数，该参数称之为事件对象，里面包含了事件发生的相关信息，比如鼠标位置、键盘按键等等</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dom.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">clientX</span>); <span class="comment">//打印鼠标的横坐标</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>常见的事件对象有：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/MouseEvent">鼠标事件对象</a>、<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent/KeyboardEvent">键盘事件对象</a></p>
+<p>另外，在事件处理函数中，<code>this</code>始终指向注册事件的 dom</p>
+<h4 id="事件默认行为"><a href="#事件默认行为" class="headerlink" title="事件默认行为"></a>事件默认行为</h4><p>某些元素的某些事件，浏览器会有自己的默认行为</p>
+<p>比如：</p>
+<ul>
+<li>a 元素的 click 事件，浏览器会跳转页面</li>
+<li>form 元素的 submit 事件，浏览器会提交表单，最终导致页面刷新</li>
+<li>文本框的 keydown 事件，浏览器会将按键文本显示到文本框中</li>
+<li>……</li>
+</ul>
+<p>如果我们要阻止浏览器的默认行为，就需要在对应时间中加入以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// e为事件对象</span></span><br><span class="line">e.<span class="title function_">preventDefault</span>();</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JS/" rel="tag"># JS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/02/23/JS%E5%B0%81%E8%A3%85%E5%B7%A5%E5%85%B7/" rel="prev" title="JS封装工具">
+                  <i class="fa fa-chevron-left"></i> JS封装工具
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mazawar</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
